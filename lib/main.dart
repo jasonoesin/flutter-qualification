@@ -1,34 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:qualif/login.dart';
-import 'package:qualif/market.dart';
+import 'package:qualif/theme.dart';
 
 void main(List<String> args) {
-  runApp(const KicksAvenue());
+  runApp(ChangeNotifierProvider(
+    child: const KicksAvenue(),
+    create: (context) => ThemeProvider(dark: true),
+  ));
 }
 
-const Map<int, Color> colorBlack = {
-  50: Color.fromARGB(0, 0, 0, 0),
-  100: Color.fromARGB(0, 0, 0, 0),
-  200: Color.fromARGB(0, 0, 0, 0),
-  300: Color.fromARGB(0, 0, 0, 0),
-  400: Color.fromARGB(0, 0, 0, 0),
-  500: Color.fromARGB(0, 0, 0, 0),
-  600: Color.fromARGB(0, 0, 0, 0),
-  700: Color.fromARGB(0, 0, 0, 0),
-  800: Color.fromARGB(0, 0, 0, 0),
-  900: Color.fromARGB(0, 0, 0, 0),
-};
-
-class KicksAvenue extends StatelessWidget {
+class KicksAvenue extends StatefulWidget {
   const KicksAvenue({super.key});
 
   @override
+  State<KicksAvenue> createState() => _KicksAvenueState();
+}
+
+class _KicksAvenueState extends State<KicksAvenue> {
+  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "KicksAvenue",
-      home: const MarketPage(),
-      theme:
-          ThemeData(primarySwatch: const MaterialColor(0xFF000000, colorBlack)),
-    );
+    return Consumer<ThemeProvider>(builder: (context, themeProvider, child) {
+      return MaterialApp(
+          title: "KicksAvenue",
+          home: const LoginPage(),
+          theme: themeProvider.getTheme);
+    });
   }
 }
