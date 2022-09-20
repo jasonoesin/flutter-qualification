@@ -13,25 +13,34 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text("KicksAvenue"),
+        backgroundColor: Colors.black,
+        title: Image.asset("assets/logo-white.png", width: 75),
+        toolbarHeight: 75,
       ),
-      body: Container(
-        padding: const EdgeInsets.all(10.0),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(30.0),
         child: Column(
           children: [
+            Image.asset("assets/home-banner.jpg"),
             const TextField(
-              decoration: InputDecoration(hintText: "Username"),
+              decoration: InputDecoration(
+                  hintText: "Username", contentPadding: EdgeInsets.all(10.0)),
             ),
-            CheckboxListTile(
-              title: const Text("Agree on KicksAvenue terms"),
-              value: isAgree,
-              onChanged: (value) => {
-                setState(() {
-                  isAgree = value!;
-                })
-              },
+            const TextField(
+              decoration: InputDecoration(
+                hintText: "Password",
+                contentPadding: EdgeInsets.all(10.0),
+              ),
             ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: ElevatedButton(
+                onPressed: (() {}),
+                child: const Text("Log In"),
+              ),
+            )
           ],
         ),
       ),

@@ -45,44 +45,49 @@ class _DetailPageState extends State<DetailPage> {
                 Tab(text: 'Comments'),
               ],
             ),
+            backgroundColor: Colors.black,
+            title: Image.asset("assets/logo-white.png", width: 75),
+            toolbarHeight: 75,
           ),
           body: TabBarView(
             children: [
-              Container(
-                padding: const EdgeInsets.all(20.0),
-                color: Colors.white,
-                constraints: const BoxConstraints.expand(),
-                child: Wrap(
-                  direction: Axis.vertical,
-                  spacing: 10,
-                  runSpacing: 10,
-                  children: [
-                    Image.asset(
-                      widget.curr.img,
-                      width: 300,
-                    ),
-                    Text(
-                      widget.curr.brand,
-                    ),
-                    Text(
-                      widget.curr.name,
-                      softWrap: false,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    Text(convertToIdr(widget.curr.price, 2).toString()),
-                    SizedBox(
-                      width: 250,
-                      child: TextField(
-                        controller: commentController,
-                        decoration: InputDecoration(hintText: "Input Comment"),
+              SingleChildScrollView(
+                child: Container(
+                  padding: const EdgeInsets.all(20.0),
+                  color: Colors.white,
+                  child: Wrap(
+                    direction: Axis.vertical,
+                    spacing: 10,
+                    runSpacing: 10,
+                    children: [
+                      Image.asset(
+                        widget.curr.img,
+                        width: 300,
                       ),
-                    ),
-                    ElevatedButton(
-                        onPressed: (() {
-                          _addComment();
-                        }),
-                        child: Text("Comment"))
-                  ],
+                      Text(
+                        widget.curr.brand,
+                      ),
+                      Text(
+                        widget.curr.name,
+                        softWrap: false,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      Text(convertToIdr(widget.curr.price, 2).toString()),
+                      SizedBox(
+                        width: 250,
+                        child: TextField(
+                          controller: commentController,
+                          decoration:
+                              InputDecoration(hintText: "Input Comment"),
+                        ),
+                      ),
+                      ElevatedButton(
+                          onPressed: (() {
+                            _addComment();
+                          }),
+                          child: Text("Comment"))
+                    ],
+                  ),
                 ),
               ),
               Container(
